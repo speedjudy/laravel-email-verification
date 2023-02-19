@@ -23,6 +23,7 @@ Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.v
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/plan', 'PlanmanageController@index')->name('plan');
 Route::get('/billing', 'BillingmanageController@index')->name('billing');
+Route::get('/category', 'CategoryController@index')->name('category');
 
 
 Route::get('/user', 'UsermanageController@index')->name('user');

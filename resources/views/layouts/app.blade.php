@@ -50,6 +50,7 @@
                             <li><a href="{{ route('home') }}">Dashboard</a></li>
                             <li><a href="{{ route('plan') }}">Plan</a></li>
                             <li><a href="{{ route('billing') }}">Billing</a></li>
+                            <li><a href="{{ route('category') }}">Category</a></li>
                             @if (Auth::user()->permission)
                                 <li><a href="{{ route('user') }}">User-Manage</a></li>
                             @endif
