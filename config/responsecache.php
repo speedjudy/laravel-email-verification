@@ -4,7 +4,7 @@ return [
     /*
      * Determine if the response cache middleware should be enabled.
      */
-    'enabled' => env('RESPONSE_CACHE_ENABLED', false),
+    'enabled' => env('RESPONSE_CACHE_ENABLED', true),
 
     /*
      *  The given class will determinate if a request should be cached. The
@@ -20,6 +20,7 @@ return [
      * default number of minutes responses must be cached.
      */
     'cache_lifetime_in_minutes' => env('RESPONSE_CACHE_LIFETIME', 60 * 24 * 7),
+    // 'cache_lifetime_in_minutes' => env('RESPONSE_CACHE_LIFETIME', 0.1),
 
     /*
      * This setting determines if a http header named "Laravel-responsecache"

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use Auth;
 class CategoryController extends Controller
 {
     /**
@@ -23,6 +24,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('category');
+        $id = auth::user()->id;
+        $categories = DB::table('subpages')->where('user_id', '=', $id)->get();
+        return view('category', compact('categories'));
     }
 }

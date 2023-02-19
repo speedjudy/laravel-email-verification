@@ -26,6 +26,12 @@ Route::get('/billing', 'BillingmanageController@index')->name('billing');
 Route::get('/category', 'CategoryController@index')->name('category');
 
 
+Route::get('/subpage/{id?}', 'SubpageController@index')->name('subpage');
+Route::post('/subpage/add', 'SubpageController@add');
+Route::get('/subpage/delete/{id}', 'SubpageController@remove');
+Route::get('/subpage/view/{id}', 'SubpageController@view');
+
+
 Route::get('/user', 'UsermanageController@index')->name('user');
 Route::post('/usermanage/add', 'UsermanageController@add');
 Route::get('/usermanage/delete', 'UsermanageController@remove');

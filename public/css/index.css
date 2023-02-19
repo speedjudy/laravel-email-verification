@@ -1,0 +1,37 @@
+.badge-success {
+    background-color: #28a745;
+}
+.badge-dark {
+    background-color: #343a40;
+}
+.badge-secondary {
+    background-color: #6c757d;
+}
+
+.card-columns {
+    /* column-count: 5; */
+    -moz-column-gap: 1.25rem;
+    column-gap: 1.25rem;
+    orphans: 1;
+    widows: 1;
+    display: -webkit-inline-box;
+}
+.card-columns .card {
+    margin-bottom: 0.75rem;
+}
+.bg-light {
+    background-color: #f8f9fa!important;
+}
+.card {
+    width:100px;
+    position: relative;
+    display: -ms-flexbox;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0.25rem;
+}
