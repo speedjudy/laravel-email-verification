@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
 class UsermanageController extends Controller
@@ -20,7 +21,7 @@ class UsermanageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,14 +29,56 @@ class UsermanageController extends Controller
     {
         //
         $data = $request->post();
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'verified' => 1,
-            'permission' => $data['permission'],
-            'password' => bcrypt($data['pwd']),
-        ]);
+        $validatFlag = true;
+        if ($data['flag']==='edit') {
+            $check = DB::table('users')->where('id', '=', $data['user_id'])->first();
+            if ($check->email === $data['email']) {
+                $validatFlag = false;
+            }
+        }
+
+        if ($validatFlag) {
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|unique:users|max:255'
+            ]);
+            
+            if ($validator->fails()) {
+                return redirect('user')
+                            ->withErrors($validator)
+                            ->withInput();
+            }
+        }
+        if ($data['flag']==='save') {
+            DB::table('users')->insert([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'verified' => 1,
+                'permission' => $data['permission'],
+                'password' => bcrypt($data['pwd']),
+            ]);
+        } else {
+            DB::table('users')->where('id', $data['user_id'])->update([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'permission' => $data['permission'],
+                'password' => bcrypt($data['pwd']),
+            ]);
+        }
         return redirect()->back();
+    }
+    /**
+     * Get the form for editing a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUser(Request $request)
+    {
+        //
+        ini_set('memory_limit', '-1');
+        $id = $request->input('id');
+        $data = DB::table('users')->where('id', '=', $id)->get();
+        print_r(json_encode($data));
+        exit();
     }
 
     /**

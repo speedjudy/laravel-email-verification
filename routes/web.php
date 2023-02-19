@@ -26,3 +26,4 @@ Route::get('/user', 'UsermanageController@index')->name('user');
 
 Route::post('/usermanage/add', 'UsermanageController@add');
 Route::get('/usermanage/delete', 'UsermanageController@remove');
+Route::get('/usermanage/getUser', 'UsermanageController@getUser');
