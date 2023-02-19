@@ -22,3 +22,7 @@ Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.v
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user', 'UsermanageController@index')->name('user');
+
+
+Route::post('/usermanage/add', 'UsermanageController@add');
+Route::get('/usermanage/delete', 'UsermanageController@remove');

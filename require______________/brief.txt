@@ -1,0 +1,81 @@
+I need Laravel set up with a boiler plate + out the box packages and a small amount of customisation.
+
+I need no styling or css, just functionality. So spend no time making it look nice, no bootstrap nothing. Just add the functionality.
+
+Homepage (blank page)
+Sign up (standard out the box)
+Log in (standard out the box)
+Forgotten password (standard out the box)
+Contact us (standard out the box)
+
+When logged in:
+Account page
+Users page
+Dashboard
+Category page
+Subpage (article page)
+
+There should be an admin panel where admin can
+Manage users
+access user accounts as if they are the user
+add categories
+
++ all out the box admin functionality 
+
+
+Dashboard/category page/subpage
+
+When logged in and a user navigates to the dashboard page the user should see a list of categories (defined in the admin and seen by everyone logged in) that each link to sub pages.
+
+When you click on a category it should take the user to that category page (unique for each user account). The category page should be a list of sub pages (or show nothing if the user has not added any sub pages)
+
+The user should have the ability to add a sub page within that category, that only they see on their account.
+
+A sub page should consist of a
+Title
+description
+tags
+delete sub page
+status (active/inactive flags)
+
+Very similar to a blog, subpages are like articles within a blog category - except only the user within the account can see the "articles".
+
+On the category page (when subpages have been added) there should be a list of article titles (which link to the subpage) along with the date that subpage was created. There should also be a "create new subpage" button.
+
+Logging in
+
+Simple login page, email address + password + login button and a link to forgotten password page.
+
+When the user logs in they should be taken to their account page, from this page they should have links to pages only visible to their account
+Settings 
+Users
+plan (blank page for now)
+billing (blank page for now)
+Profile (email address, password change, company name, phone number, address, vat number)
+
+Registration page
+
+This should be a simple form
+Name
+email address
+password
+checkbox "agree to terms of service" which must be checked
+
+A confirmation email should be sent to the user to validate their email address for the account to be active - if they try and log in it will not take them to the logged in site instead a page that says "please activate your email, didn't get the email. Click here to resend it"
+
+
+A cache package should also be installed, to cache pages to reduce database requests
+
+
+Users page
+
+The account creator should be able to invite other users to the account by going to the users page and entering their email address into a field and hitting "invite".
+
+The user invited would receive an email with a link saying "{name} invited you to join follow this link" the link should expire in 48 hours and should take them to the sign up page with their email address prefilled and the email form field hidden. They should not receive an activate account request if they were invited to join by email (as their email is already confirmed)
+
+users that have been invited should be listed on the users page. Their status should be displayed too. The status are: "pending" if they have not clicked the link and registered, "expired" if it has gone 48 hours and they have not joined. if that is the case a button that say "resend invite" should be visible. or if they have been invited and have registered a button that says "remove" when clicked a alert should say "are you sure?" if they click yes the user is removed from the account and no longer has access - but still exists in the database. (they can be invited again)
+
+
+
+
+

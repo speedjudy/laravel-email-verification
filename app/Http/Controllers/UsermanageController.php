@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UsermanageController extends Controller
 {
@@ -14,7 +15,8 @@ class UsermanageController extends Controller
     public function index()
     {
         //
-        return view('usermanage');
+        $users = User::all();
+        return view('usermanage', compact('users'));
     }
 
     /**
@@ -22,9 +24,18 @@ class UsermanageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add(Request $request)
     {
         //
+        $data = $request->post();
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'verified' => 1,
+            'permission' => $data['permission'],
+            'password' => bcrypt($data['pwd']),
+        ]);
+        return redirect()->back();
     }
 
     /**
@@ -78,8 +89,11 @@ class UsermanageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function remove(Request $request)
     {
         //
+        ini_set('memory_limit', '-1');
+        $id = $request->input('id');
+        DB::table('users')->where('id', '=', $id)->delete();
     }
 }

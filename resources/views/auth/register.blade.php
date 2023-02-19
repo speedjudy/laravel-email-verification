@@ -60,7 +60,13 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="agree" class="col-md-4 control-label"></label>
 
+                            <div class="col-md-6">
+                            <input class="form-check-input" type="checkbox" id="agree" name="agree" required> I agree on blabla.
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
