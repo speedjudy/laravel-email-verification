@@ -64,7 +64,7 @@
                             <label for="agree" class="col-md-4 control-label"></label>
 
                             <div class="col-md-6">
-                            <input class="form-check-input" type="checkbox" id="agree" name="agree" required> I agree on blabla.
+                            <input class="form-check-input" type="checkbox" id="agree" name="agree" required> I agree to terms of service.
                             </div>
                         </div>
                         <div class="form-group">

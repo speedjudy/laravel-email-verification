@@ -17,6 +17,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('company')->nullable($value = true)->default(null);
+            $table->string('phone')->nullable($value = true)->default(null);
+            $table->string('address')->nullable($value = true)->default(null);
+            $table->string('vat_number')->nullable($value = true)->default(null);
             $table->boolean('verified')->default(false);
             $table->boolean('permission')->default(false);
             $table->string('password');

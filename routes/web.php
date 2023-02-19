@@ -21,9 +21,15 @@ Route::get('/verify/token/{token}', 'Auth\VerificationController@verify')->name(
 Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.verify.resend');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/plan', 'PlanmanageController@index')->name('plan');
+Route::get('/billing', 'BillingmanageController@index')->name('billing');
+
+
 Route::get('/user', 'UsermanageController@index')->name('user');
-
-
 Route::post('/usermanage/add', 'UsermanageController@add');
 Route::get('/usermanage/delete', 'UsermanageController@remove');
 Route::get('/usermanage/getUser', 'UsermanageController@getUser');
+
+Route::get('/profile', 'ProfilemanageController@index')->name('profile');
+Route::post('/profile/edit', 'ProfilemanageController@edit');
+Route::get('/profile/checkPwd', 'ProfilemanageController@checkPwd');
