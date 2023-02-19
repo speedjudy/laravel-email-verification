@@ -21,3 +21,4 @@ Route::get('/verify/token/{token}', 'Auth\VerificationController@verify')->name(
 Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.verify.resend');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user', 'UsermanageController@index')->name('user');
