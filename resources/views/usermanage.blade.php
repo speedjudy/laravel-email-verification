@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.secure')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -48,11 +49,15 @@
                                         @endif
                                     </td>
                                     <td>
+                                        @if ($user->permission==0)
                                         <a class="btn btn-success text-white user_edit_btn" data-toggle="modal" data-target="#addUserModal" id="{{ $user->id }}">Edit</a>
 
                                         <a class="btn btn-danger text-white user_delete_btn" id="{{ $user->id }}">
                                             Delete
                                         </a>
+                                        @else 
+                                            <i>Admin</i>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

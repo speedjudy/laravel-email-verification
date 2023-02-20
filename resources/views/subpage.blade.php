@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.secure')
 <link
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
     rel="stylesheet"
@@ -29,6 +30,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                             <input type="hidden" name="subpage_id" value="{{$subpage[0]->id}}" />
+                            <input type="hidden" name="category_id" value="{{$category_id}}" />
                             <div class="form-group">
                                 <label for="subpage_title">Title:</label>
                                 <input type="text" class="form-control" value="{{$subpage[0]->title}}" name="subpage_title" placeholder="Enter Subpage title name" id="subpage_title">
@@ -60,10 +62,11 @@
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
                     @else 
-                        <form class="subpage_form" method="POST" action="subpage/add">
+                        <form class="subpage_form" method="POST" action="/subpage/add">
                             {{ csrf_field() }}
                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}" />
                             <input type="hidden" name="subpage_id" />
+                            <input type="hidden" name="category_id" value="{{$category_id}}" />
                             <div class="form-group">
                                 <label for="subpage_title">Title:</label>
                                 <input type="text" class="form-control" name="subpage_title" placeholder="Enter Subpage title name" id="subpage_title">

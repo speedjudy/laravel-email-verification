@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.secure')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -38,7 +39,8 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password Change:</label>
-                            <input type="checkbox" name="pwd" id="pwd">
+                            <input type="checkbox" id="pwd" />
+                            <input type="hidden" name="pwd" value="off" />
                             <div class="password_box" style="width:40%; margin-left:30px; display:none;">
                                 <div class="form-group">
                                     <label for="current_pwd">Current Password:</label>
@@ -65,8 +67,10 @@
         $(document).on("click", "#pwd", function(){
             if ($(this)[0].checked) {
                 $(".password_box").show();
+                $("[name=pwd]").val("on");
             } else {
                 $(".password_box").hide();
+                $("[name=pwd]").val("off");
             }
         });
         $(document).on("click", ".update_profile", function(){

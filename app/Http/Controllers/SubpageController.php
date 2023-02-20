@@ -24,14 +24,14 @@ class SubpageController extends Controller
     * @return \Illuminate\Http\Response
     */
 
-    public function index( $sid = null )
+    public function index( $category_id, $sid = null )
     {
         if ($sid) {
             $subpage = DB::table('subpages')->where('id', '=', $sid)->get();
-            return view('subpage', compact('subpage'));
+            return view('subpage', compact('subpage', 'category_id'));
         } else {
             $subpage = [];
-            return view('subpage', compact('subpage'));
+            return view('subpage', compact('subpage', 'category_id'));
         }
     }
     public function view( $sid )
@@ -55,6 +55,7 @@ class SubpageController extends Controller
                 'description' => $data[ 'description' ],
                 'status' => $data[ 'status' ],
                 'tags' => $data[ 'tags' ],
+                'category_id' => $data['category_id'],
             ] );
         } else {
             DB::table( 'subpages' )->insert( [
@@ -63,9 +64,10 @@ class SubpageController extends Controller
                 'status' => $data[ 'status' ],
                 'tags' => $data[ 'tags' ],
                 'user_id' => $data[ 'user_id' ],
+                'category_id' => $data['category_id'],
             ] );
         }
-        return redirect( 'category' );
+        return redirect()->back();
     }
     /**
      * Remove the specified resource from storage.
@@ -78,6 +80,6 @@ class SubpageController extends Controller
         //
         ini_set('memory_limit', '-1');
         DB::table('subpages')->where('id', '=', $id)->delete();
-        return redirect( 'category' );
+        return redirect()->back();
     }
 }

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.secure')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -12,10 +13,9 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    
-                    <a href="{{ route('subpage') }}">
+                    <a href="/subpage/edit/{{$category_id}}">
                         <button type="button" class="btn btn-primary create_new_widget">
-                            Create new category
+                            Create new subpage
                         </button>
                     </a>
                     <table class="table table-bordered">
@@ -27,21 +27,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($categories as $category)
+                            @foreach ($categories as $subpage)
                                 <tr>
-                                    <td><a href="/subpage/view/{{$category->id}}">{{ $category->title }}</a></td>
+                                    <td><a href="/subpage/view/{{$subpage->id}}">{{ $subpage->title }}</a></td>
                                     <td>
-                                        @if ($category->status==0)
+                                        @if ($subpage->status==0)
                                             <span class="badge badge-secondary">Inactive</span>
-                                        @elseif ($category->status==1)
+                                        @elseif ($subpage->status==1)
                                             <span class="badge badge-success">Active</span>
                                         @else 
                                             <span class="badge badge-dark">Closed</span>
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="/subpage/{{$category->id}}" class="btn btn-success text-white">Edit</a>
-                                        <a href="/subpage/delete/{{$category->id}}" class="btn btn-danger text-white">Delete</a>
+                                        <a href="/subpage/edit/{{$subpage->category_id}}/{{$subpage->id}}" class="btn btn-success text-white">Edit</a>
+                                        <a href="/subpage/delete/{{$subpage->id}}" class="btn btn-danger text-white">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

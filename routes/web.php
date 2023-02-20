@@ -23,10 +23,17 @@ Route::get('/verify/resend', 'Auth\VerificationController@resend')->name('auth.v
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/plan', 'PlanmanageController@index')->name('plan');
 Route::get('/billing', 'BillingmanageController@index')->name('billing');
+
 Route::get('/category', 'CategoryController@index')->name('category');
+Route::get('/cate/{category}/{userId}/{categoryId}', 'CategoryController@view');
 
 
-Route::get('/subpage/{id?}', 'SubpageController@index')->name('subpage');
+Route::get('/category_manage', 'CategoryController@category_manage')->name('category_manage');
+Route::post('/category_manage/add', 'CategoryController@category_manage_add');
+Route::get('/category_manage/delete', 'CategoryController@category_manage_remove');
+Route::get('/category_manage/getCategory', 'CategoryController@category_manage_get');
+
+Route::get('/subpage/edit/{category_id}/{id?}', 'SubpageController@index')->name('subpage');
 Route::post('/subpage/add', 'SubpageController@add');
 Route::get('/subpage/delete/{id}', 'SubpageController@remove');
 Route::get('/subpage/view/{id}', 'SubpageController@view');

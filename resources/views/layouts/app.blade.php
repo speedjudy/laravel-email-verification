@@ -13,7 +13,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/index.css') }}" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -47,11 +47,24 @@
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
+                            <input type='hidden' name='logined_checked' value="0" />
                         @else
+                            <input type='hidden' name='logined_checked' value="1" />
+                            <input type='hidden' name='user_id' value="{{Auth::user()->id}}" />
                             <li><a href="{{ route('home') }}">Dashboard</a></li>
                             <li><a href="{{ route('plan') }}">Plan</a></li>
                             <li><a href="{{ route('billing') }}">Billing</a></li>
-                            <li><a href="{{ route('category') }}">Category</a></li>
+                            <li><a href="{{ route('category_manage') }}">Category-manage</a></li>
+                            <!-- <li><a href="{{ route('category') }}">Category</a></li> -->
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    Categories <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu category_menu" role="menu">
+                                    
+                                </ul>
+                            </li>
                             @if (Auth::user()->permission)
                                 <li><a href="{{ route('user') }}">User-Manage</a></li>
                             @endif
@@ -98,7 +111,33 @@
 
         @yield('content')
     </div>
-
+    <script>
+        var logined_user = $("[name=logined_checked]").val();
+        if (logined_user == "1") {
+            var user_id = $("[name=user_id]").val();
+            $.get(
+                "/category_manage/getCategory", {
+                    id : user_id
+                }, function (res) {
+                    var html = "";
+                    if (res.length > 0) {
+                        for (var i=0;i<res.length;i++) {
+                            var url = res[i].category.split(" ");
+                            var link = "/cate/"+url.join("-")+"/"+user_id+"/"+res[i].id;
+                            html += `<li>
+                                <a href="`+link+`">
+                                    `+res[i].category+`
+                                </a>
+                            </li>`;
+                        }
+                    } else {
+                        html += `<li><a href="#">Empty Category</a></li>`;
+                    }
+                    $(".category_menu").html(html);
+                }, "json"
+            )
+        }
+    </script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
