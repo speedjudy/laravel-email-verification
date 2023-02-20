@@ -25,7 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $id = auth::user()->id;
-        $categories = DB::table('subpages')->where('user_id', '=', $id)->get();
+
+        $admin = DB::table('users')->where('permission', '=', 1)->first();
+        
+        $categories = DB::table('categories')->where('user_id', '=', $admin->id)->get();
+
         return view('home', compact('categories'));
     }
 }

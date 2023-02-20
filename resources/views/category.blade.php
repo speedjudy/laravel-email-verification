@@ -40,8 +40,12 @@
                                         @endif
                                     </td>
                                     <td>
+                                    @if (Auth::user()->permission)
                                         <a href="/subpage/edit/{{$subpage->category_id}}/{{$subpage->id}}" class="btn btn-success text-white">Edit</a>
                                         <a href="/subpage/delete/{{$subpage->id}}" class="btn btn-danger text-white">Delete</a>
+                                    @else
+                                        <i>User can only review</i>
+                                    @endif
                                     </td>
                                 </tr>
                             @endforeach

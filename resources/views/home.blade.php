@@ -19,7 +19,7 @@
                                 <div class="card bg-light">
                                     <div class="card-body text-center">
                                         <img class="card-img-top" src="images/images.jpg" width="70" alt="Card image">
-                                        <p class="card-text"><a href="/subpage/view/{{$category->id}}">{{ $category->title }}</a></p>
+                                        <p class="card-text"><a href="/cate/<?php echo str_replace(" ", "-", $category->category);?>/{{$category->user_id}}/{{$category->id}}">{{ $category->category }}</a></p>
                                     </div>
                                 </div>
                             @endforeach
