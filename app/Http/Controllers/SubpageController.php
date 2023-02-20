@@ -65,6 +65,7 @@ class SubpageController extends Controller
                 'tags' => $data[ 'tags' ],
                 'user_id' => $data[ 'user_id' ],
                 'category_id' => $data['category_id'],
+                'created_at' => new \DateTime()
             ] );
         }
         return redirect()->back();

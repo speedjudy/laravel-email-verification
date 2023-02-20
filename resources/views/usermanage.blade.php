@@ -50,9 +50,9 @@
                                     </td>
                                     <td>
                                         @if ($user->permission==0)
-                                        <a class="btn btn-success text-white user_edit_btn" data-toggle="modal" data-target="#addUserModal" id="{{ $user->id }}">Edit</a>
+                                        <a class="btn btn-success text-white user_edit_btn btn-sm" data-toggle="modal" data-target="#addUserModal" id="{{ $user->id }}">Edit</a>
 
-                                        <a class="btn btn-danger text-white user_delete_btn" id="{{ $user->id }}">
+                                        <a class="btn btn-danger text-white user_delete_btn btn-sm" id="{{ $user->id }}">
                                             Delete
                                         </a>
                                         @else 

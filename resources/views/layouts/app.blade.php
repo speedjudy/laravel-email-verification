@@ -52,9 +52,10 @@
                             <input type='hidden' name='logined_checked' value="1" />
                             <input type='hidden' name='user_id' value="{{Auth::user()->id}}" />
                             <li><a href="{{ route('home') }}">Dashboard</a></li>
+                            <li><a href="{{ route('invite') }}">Invite-User</a></li>
                             <li><a href="{{ route('plan') }}">Plan</a></li>
                             <li><a href="{{ route('billing') }}">Billing</a></li>
-                            <li><a href="{{ route('category_manage') }}">Category-manage</a></li>
+                            <li><a href="{{ route('category_manage') }}">Category-Manage</a></li>
                             <!-- <li><a href="{{ route('category') }}">Category</a></li> -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

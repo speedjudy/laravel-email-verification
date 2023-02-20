@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($categories as $subpage)
                                 <tr>
-                                    <td><a href="/subpage/view/{{$subpage->id}}">{{ $subpage->title }}</a></td>
+                                    <td><a href="/subpage/view/{{$subpage->id}}">{{ $subpage->title }}</a> <br> <i>{{ $subpage->created_at }}</i></td>
                                     <td>
                                         @if ($subpage->status==0)
                                             <span class="badge badge-secondary">Inactive</span>
@@ -41,8 +41,8 @@
                                     </td>
                                     <td>
                                     @if (Auth::user()->permission)
-                                        <a href="/subpage/edit/{{$subpage->category_id}}/{{$subpage->id}}" class="btn btn-success text-white">Edit</a>
-                                        <a href="/subpage/delete/{{$subpage->id}}" class="btn btn-danger text-white">Delete</a>
+                                        <a href="/subpage/edit/{{$subpage->category_id}}/{{$subpage->id}}" class="btn btn-success text-white btn-sm">Edit</a>
+                                        <a href="/subpage/delete/{{$subpage->id}}" class="btn btn-danger text-white btn-sm">Delete</a>
                                     @else
                                         <i>User can only review</i>
                                     @endif
